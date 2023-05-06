@@ -23,7 +23,7 @@ except ImportError:
 
 
 package = "{{cookiecutter.package_name}}"
-python_versions = ["3.10", "3.9", "3.8", "3.7"]
+python_versions = ["3.11"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
@@ -120,18 +120,11 @@ def precommit(session: Session) -> None:
         "--show-diff-on-failure",
     ]
     session.install(
-        "bandit",
         "black",
         "darglint",
-        "flake8",
-        "flake8-bugbear",
-        "flake8-docstrings",
-        "flake8-rst-docstrings",
-        "isort",
-        "pep8-naming",
         "pre-commit",
         "pre-commit-hooks",
-        "pyupgrade",
+        "ruff",
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":
